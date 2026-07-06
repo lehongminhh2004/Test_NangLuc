@@ -1,0 +1,34 @@
+services:
+  payload:
+    image: node:20-alpine
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      # Override DATABASE_URL specifically for docker networking
+      - DATABASE_URL=postgres://postgres:123123@postgres:5432/todo-app
+      - PAYLOAD_SECRET=96cf2ce259b1782ffe7ab641
+
+  postgres:
+    restart: always
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123123
+      - POSTGRES_DB=todo-app
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  pgdata:
+  node_modules:
