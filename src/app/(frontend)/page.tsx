@@ -208,9 +208,46 @@ export default function HomePage() {
     return true
   })
 
-  {/* Copy Section Button remains here */ }
+  return (
+    <>
+      <div className="app-container">
+        <div className="date-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', width: '100%' }}>
+            <button className="btn-icon nav-btn" onClick={() => changeDate(-1)}>◀</button>
+            <input 
+              type="date" 
+              className="date-picker-main"
+              value={currentDate}
+              onChange={(e) => setCurrentDate(e.target.value)}
+              style={{ margin: 0 }}
+            />
+            <button className="btn-icon nav-btn" onClick={() => changeDate(1)}>▶</button>
+          </div>
+          <p className="subtitle" style={{ marginTop: '0.5rem', marginBottom: 0 }}>Quản lý công việc</p>
+        </div>
 
-  <div className="controls">
+        <form className="todo-form" onSubmit={addTodo} style={{ marginBottom: '1rem' }}>
+          <input 
+            type="text" 
+            className="todo-input" 
+            placeholder="Thêm công việc mới" 
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <button type="submit" className="add-btn" disabled={!title.trim()}>Thêm</button>
+        </form>
+
+        <div className="copy-section" style={{ marginBottom: '2rem', justifyContent: 'flex-start' }}>
+          <button 
+            className="filter-btn" 
+            style={{ width: '100%', padding: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', borderStyle: 'dashed' }} 
+            onClick={() => setShowCopyDialog(true)}
+          >
+            <span style={{ fontSize: '1.2rem' }}>📥</span> Nhập danh sách công việc từ ngày khác
+          </button>
+        </div>
+
+        <div className="controls">
     <input
       type="text"
       className="search-input"
