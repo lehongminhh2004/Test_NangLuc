@@ -36,9 +36,8 @@ Một ứng dụng quản lý công việc (Todo App) toàn diện, sở hữu g
 Đảm bảo máy tính của bạn đã cài đặt **Node.js** phiên bản `>= 18.20.2` hoặc `>= 20.9.0`. Bạn có thể kiểm tra bằng lệnh `node -v` trong Terminal.
 
 ### Bước 1: Cài đặt thư viện (Dependencies)
-Mở Terminal/Command Prompt tại thư mục gốc của dự án (`todo-app`) và chạy:
+Mở Terminal/Command Prompt tại thư mục gốc của dự án và chạy:
 ```bash
-cd todo-app
 npm install
 ```
 
